@@ -1,21 +1,33 @@
+const promise = new Promise((resolve) => {
+  setTimeout(() => {
+    const randomNumber = Math.floor(Math.random() * 10) + 1;
+    resolve(randomNumber);
+  }, 1000);
+});
 
-const characters = fetch('https://raw.githubusercontent.com/adhithiravi/React-Hooks-Examples/master/testAPI.json');
-characters
-  .then (data => data.json()) 
-  .then (data => {
-    setTimeout(() => console.log(data),5000)
-    //  console.log(data.articles.map((val) => val.title))
+promise.then((randomNumber) => {
+  console.log("Random number: ", randomNumber);
+}).catch((error) => {
+  console.error(error);
+});
+
+
+
+const promise1 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    const randomNumber = Math.floor(Math.random() * 10) + 1;
+    if (randomNumber <= 5) {
+      reject("The random number is less than or equal to 5");
+    } else {
+      resolve(randomNumber);
+    }
+  }, 1000);
+});
+
+promise1
+  .then((randomNumber) => {
+    console.log("Random number: ", randomNumber);
   })
-
-
-
-  const characters1 = fetch('https://raw.githubusercontttent.com/adhithiravi/React-Hooks-Examples/master/testAPI.json');
-  characters1
-    .then (data => data.json()) 
-    .then (data => {
-       console.log(data)
-    })
-
   .catch((error) => {
-     console.error(error)
-  }) 
+    console.error("Error: ", error);
+  });
